@@ -6,7 +6,7 @@
 	<artifactId>pokedex-api</artifactId>
 	<version>1.4.7</version>
 	<name>Techniques de tests</name>
-	<description>TP de techniques de tests</description>
+	<description>TP de techniques de tests !</description>
 	<url>https://github.com/thedoctor84/ceri-m1-test</url>
 
 	<properties>
