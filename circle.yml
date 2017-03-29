@@ -1,0 +1,12 @@
+machine:
+    java:
+        version: oraclejdk8
+
+general:
+  branches:
+    only:
+      - master # list of branches to build
+    
+test:
+  override:
+  	- mvn test
