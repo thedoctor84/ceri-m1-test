@@ -28,6 +28,7 @@
 			</testResource>
 		</testResources>
 	</build>
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
