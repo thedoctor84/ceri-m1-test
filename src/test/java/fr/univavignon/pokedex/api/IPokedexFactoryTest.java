@@ -1,5 +1,33 @@
 package fr.univavignon.pokedex.api;
 
-public class IPokedexFactoryTest {
+import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
+
+public class IPokedexFactoryTest {
+	
+	@Mock private IPokedexFactory pokedexFactoryMock;
+	
+	@Mock private IPokedex pokedexMock;
+
+	@Mock private IPokemonMetadataProvider pokemonMetadataProviderMock;
+	
+	@Mock private IPokemonFactory pokemonFactoryMock;
+	
+	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
+
+	@Before
+	public void setUp() throws PokedexException {
+		 Mockito.when(pokedexFactoryMock.createPokedex(pokemonMetadataProviderMock,pokemonFactoryMock)).thenReturn(pokedexMock);
+	}
+	@Test
+	public void testCreatePokedex() throws PokedexException {
+		assertEquals(pokedexMock,pokedexFactoryMock.createPokedex(pokemonMetadataProviderMock,pokemonFactoryMock));
+	}
 }

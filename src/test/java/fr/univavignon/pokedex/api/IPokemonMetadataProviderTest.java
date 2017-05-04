@@ -20,14 +20,14 @@ public class IPokemonMetadataProviderTest {
 
 	@Before
 	public void setUp() throws PokedexException {
-		 pokemonMetadata = new PokemonMetadata(1,"test",50,40,30);
+		 pokemonMetadata = new PokemonMetadata(1,"Bulbizarre",50,40,30);
 		 Mockito.when(pokemonMetadataProviderMock.getPokemonMetadata(1)).thenReturn(pokemonMetadata);
 		 Mockito.when(pokemonMetadataProviderMock.getPokemonMetadata(-1)).thenThrow(new PokedexException("Pokedex exception"));
 	}
 	@Test
 	public void testGetPokemonMetadata() throws PokedexException {
 		assertEquals(1, pokemonMetadataProviderMock.getPokemonMetadata(pokemonMetadata.getIndex()).getIndex());
-		assertEquals("test", pokemonMetadataProviderMock.getPokemonMetadata(pokemonMetadata.getIndex()).getName());
+		assertEquals("Bulbizarre", pokemonMetadataProviderMock.getPokemonMetadata(pokemonMetadata.getIndex()).getName());
 		assertEquals(50, pokemonMetadataProviderMock.getPokemonMetadata(pokemonMetadata.getIndex()).getAttack());
 		assertEquals(40, pokemonMetadataProviderMock.getPokemonMetadata(pokemonMetadata.getIndex()).getDefense());
 		assertEquals(30, pokemonMetadataProviderMock.getPokemonMetadata(pokemonMetadata.getIndex()).getStamina());
