@@ -36,7 +36,7 @@ public class IPokedexTest {
 	
 	@Before
 	public void setUp() throws PokedexException {
-		bulbizarre = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 0.56);
+		bulbizarre = new Pokemon(1, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 0.56);
 		aquali = new Pokemon(133, "Aquali", 186, 168, 260, 2729, 202, 5000, 4, 1.0);
 		Mockito.when(pokedexMock.size()).thenReturn(2);
 		Mockito.when(pokedexMock.addPokemon(bulbizarre)).thenReturn(bulbizarre.getIndex());
@@ -60,13 +60,13 @@ public class IPokedexTest {
 	
 	@Test
 	public void testAddPokemon() throws PokedexException {
-		assertEquals(0,pokedexMock.addPokemon(bulbizarre));
+		assertEquals(1,pokedexMock.addPokemon(bulbizarre));
 		assertEquals(133,pokedexMock.addPokemon(aquali));
 	}
 	
 	@Test
 	public void testGetPokemon() throws PokedexException {
-		assertEquals(bulbizarre,pokedexMock.getPokemon(0));
+		assertEquals(bulbizarre,pokedexMock.getPokemon(1));
 		assertEquals(aquali,pokedexMock.getPokemon(133));
 	}
 	

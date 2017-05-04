@@ -20,12 +20,12 @@ public class IPokemonFactoryTest {
 
 	@Before
 	public void setUp() throws PokedexException {
-		pokemon = new Pokemon(0, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 0.56);
-		 Mockito.when(pokemonFactoryMock.createPokemon(0,126,126,4000,4)).thenReturn(pokemon);
+		pokemon = new Pokemon(1, "Bulbizarre", 126, 126, 90, 613, 64, 4000, 4, 0.56);
+		 Mockito.when(pokemonFactoryMock.createPokemon(1,126,126,4000,4)).thenReturn(pokemon);
 	}
 	@Test
 	public void testCreatePokedex() throws PokedexException {
-		assertEquals(pokemon,pokemonFactoryMock.createPokemon(0,126,126,4000,4));
+		assertEquals(pokemon,pokemonFactoryMock.createPokemon(1,126,126,4000,4));
 	}
 
 }
