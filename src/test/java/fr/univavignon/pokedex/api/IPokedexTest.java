@@ -15,14 +15,8 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
 public class IPokedexTest {
-
-	//int size();
-	//int addPokemon(Pokemon pokemon);
-	//Pokemon getPokemon(int id) throws PokedexException;
-	//List<Pokemon> getPokemons();
-	//List<Pokemon> getPokemons(Comparator<Pokemon> order);
 	
-	@Mock IPokedex pokedexMock;
+	@Mock private IPokedex pokedexMock;
 	
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 	
