@@ -10,7 +10,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.apache.log4j.Logger;
-import org.junit.Test;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
@@ -46,13 +45,15 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider {
 	 * index de 1 à 151, correspondant au numéro du pokémon dans le vrai pokédex
 	 */
 	@Override
-	@Test
 	public PokemonMetadata getPokemonMetadata(int index) throws PokedexException {
 		if(index < 1 || index > 151)
 			throw new PokedexException("l'index "+index+"est en dehors des limites");
 		
-		if(completePokemonsData == null)
+		if(completePokemonsData == null) {
+			log.debug("Récupération des data");
 			parseMetadata();
+		}
+			
 		
 		JsonObject pokemon = completePokemonsData.get(index-1).getAsJsonObject();
 		
@@ -68,7 +69,6 @@ public class PokemonMetadataProvider implements IPokemonMetadataProvider {
 				String json = readUrl(URL_DATA);
 				Gson gson = new Gson(); 
 				completePokemonsData = gson.fromJson(json, JsonArray.class);
-			    log.debug(completePokemonsData.get(1));
 			} catch (MalformedURLException e) {
 				System.out.println("Erreur lors de la lecture de l'URL du fichier json : "+e.getMessage());
 				log.fatal("Erreur lors de la lecture de l'URL du fichier json : "+e.getMessage());
