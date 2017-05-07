@@ -24,7 +24,7 @@ public class IPokemonFactoryTest {
 		 Mockito.when(pokemonFactoryMock.createPokemon(1,126,126,4000,4)).thenReturn(pokemon);
 	}
 	@Test
-	public void testCreatePokedex() throws PokedexException {
+	public void testCreatePokemon() throws PokedexException {
 		assertEquals(pokemon,pokemonFactoryMock.createPokemon(1,126,126,4000,4));
 	}
 
