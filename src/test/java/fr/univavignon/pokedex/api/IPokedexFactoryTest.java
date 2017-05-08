@@ -14,11 +14,11 @@ public class IPokedexFactoryTest {
 	
 	@Mock private IPokedexFactory pokedexFactoryMock;
 	
-	@Mock private IPokedex pokedexMock;
+	@Mock protected IPokedex pokedexMock;
 
-	@Mock private IPokemonMetadataProvider pokemonMetadataProviderMock;
+	@Mock protected IPokemonMetadataProvider pokemonMetadataProviderMock;
 	
-	@Mock private IPokemonFactory pokemonFactoryMock;
+	@Mock protected IPokemonFactory pokemonFactoryMock;
 	
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 
