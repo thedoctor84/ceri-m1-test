@@ -10,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,7 +29,9 @@ import fr.univavignon.pokedex.api.PokemonMetadata;
  * @author antoine
  *
  */
-public class Pokedex implements IPokedex {
+public class Pokedex implements IPokedex, Serializable {
+
+	private static final long serialVersionUID = 6472336740587547128L;
 
 	private static Logger log = Logger.getLogger(Pokedex.class);
 
@@ -42,15 +45,15 @@ public class Pokedex implements IPokedex {
 		pokemons = new ArrayList<Pokemon>();
 		pokemonMetadataProvider = new PokemonMetadataProvider();
 		pokemonFactory = new PokemonFactory();
-		
+
 		try {
 			load();
 		} catch (FileNotFoundException e) {
 			log.fatal("Le pokedex n'a pas pu être chargé : Fichier introuvable");
 		} catch (IOException e) {
-			log.fatal("Erreur d'écriture lors du chargement du pokedex : "+e.getMessage());
+			log.fatal("Erreur d'écriture lors du chargement du pokedex : ",e);
 		} catch (ClassNotFoundException e) {
-			log.fatal("Erreur lors de la récupération de l'objet Pokedex : "+e.getMessage());
+			log.fatal("Erreur lors de la récupération de l'objet Pokedex : ",e);
 		}
 	}
 
@@ -94,9 +97,9 @@ public class Pokedex implements IPokedex {
 
 	@Override
 	public List<Pokemon> getPokemons(Comparator<Pokemon> order) {
-        List<Pokemon> pokemonsSorted = new ArrayList<Pokemon>(pokemons);
-        pokemonsSorted.sort(order);
-        return Collections.unmodifiableList(pokemonsSorted);
+		List<Pokemon> pokemonsSorted = new ArrayList<Pokemon>(pokemons);
+		pokemonsSorted.sort(order);
+		return Collections.unmodifiableList(pokemonsSorted);
 	}
 
 	private void save() {
@@ -121,9 +124,10 @@ public class Pokedex implements IPokedex {
 	}
 
 	private void load() throws FileNotFoundException, IOException, ClassNotFoundException {
-		File fichier =  new File("pokedex.ser") ;
-		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichier)) ;
-		//try {
+		File fichier =  new File("pokedex.ser");
+		if(fichier.exists() && fichier.length() != 0) {
+			// Lecture du pokedex
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fichier)) ;
 			Pokedex pokedex = (Pokedex) ois.readObject();
 			pokemons = new ArrayList<Pokemon>(pokedex.pokemons);
 			try {
@@ -131,20 +135,9 @@ public class Pokedex implements IPokedex {
 			} catch (IOException e) {
 				log.fatal("Erreur lors de la fermeture du flux pour charger le pokedex : "+e.getMessage());
 			}
-		/*} catch (FileNotFoundException e) {
-			log.fatal("Le pokedex "+fichier.getName()+" n'a pas pu être chargé : Fichier introuvable");
-		} catch (IOException e) {
-			log.fatal("Erreur d'écriture lors du chargement du pokedex : "+e.getMessage());
-		} catch (ClassNotFoundException e) {
-			log.fatal("Erreur lors de la récupération de l'objet Pokedex : "+e.getMessage());
-		} finally {
-			try {
-				if (ois != null) {
-					ois.close();
-				}
-			} catch (IOException e) {
-				log.fatal("Erreur lors de la fermeture du flux pour charger le pokedex : "+e.getMessage());
-			}
-		}*/
+		} else if (!fichier.exists()){
+			// Créé un nouveau fichier uniquement si le fichier n'existe pas
+			fichier.createNewFile();
+		}
 	}
 }

@@ -14,7 +14,7 @@ import fr.univavignon.pokedex.api.impl.PokemonFactory;
  * @author antoine
  *
  */
-public class PokemonFactoryTest extends IPokedexFactoryTest {
+public class PokemonFactoryTest extends IPokemonFactoryTest {
 	
 	private IPokemonFactory pokemonFactory;
 	

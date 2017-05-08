@@ -25,14 +25,7 @@ public class IPokedexTest {
 	
 	private List<Pokemon> pokemons;
 	
-	private Comparator<Pokemon> ordre = new Comparator<Pokemon>() {
-		@Override
-		public int compare(Pokemon o1, Pokemon o2) {
-			if(o1.getIndex() > o2.getIndex()) return 1;
-			else if(o1.getIndex() < o2.getIndex()) return -1;
-			else return 0;
-		}
-};
+	private Comparator<Pokemon> ordre = PokemonComparators.INDEX;
 	
 	@Before
 	public void setUp() throws PokedexException {
