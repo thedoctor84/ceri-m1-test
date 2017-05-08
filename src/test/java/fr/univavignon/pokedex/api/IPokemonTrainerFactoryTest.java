@@ -11,9 +11,9 @@ import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
 public class IPokemonTrainerFactoryTest {
-	@Mock private IPokedexFactory pokedexFactoryMock;
+	@Mock protected IPokedexFactory pokedexFactoryMock;
 	
-	@Mock private IPokedex pokedexMock;
+	@Mock protected IPokedex pokedexMock;
 	
 	@Mock private IPokemonTrainerFactory pokemonTrainerFactoryMock;
 	
