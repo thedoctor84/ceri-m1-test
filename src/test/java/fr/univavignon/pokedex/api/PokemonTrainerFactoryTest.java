@@ -8,7 +8,6 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import fr.univavignon.pokedex.api.impl.PokemonTrainerFactory;
 
