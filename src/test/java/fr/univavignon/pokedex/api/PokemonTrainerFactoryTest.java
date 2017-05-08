@@ -16,14 +16,12 @@ import fr.univavignon.pokedex.api.impl.PokemonTrainerFactory;
  *
  */
 public class PokemonTrainerFactoryTest extends IPokemonTrainerFactoryTest{
-	private IPokemonTrainerFactory pokemonTrainerFactory;
-	
 	private PokemonTrainer pokemonTrainer;
 	private Team team = Team.INSTINCT;
 	
 	@Before
 	public void setUp() throws PokedexException {
-		pokemonTrainerFactory = new PokemonTrainerFactory();
+		IPokemonTrainerFactory pokemonTrainerFactory = new PokemonTrainerFactory();
 		pokemonTrainer = pokemonTrainerFactory.createTrainer("TheDoctor", team, pokedexFactoryMock);
 	}
 	
